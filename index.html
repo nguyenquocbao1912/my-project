@@ -1,0 +1,531 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./src/output.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/all/all.min.css" rel="stylesheet"/>
+  <style>
+    :root{
+        --vx: 0;
+        --vy: 0;
+        --scale: 0;
+        --life: 0;
+    }
+
+    @keyframes trail {
+        0% {
+            transform: translate(0,0) scale(var(--scale));
+            opacity: 1;
+        }
+        100% {
+            transform: translate(var(--vx), var(--vy)) scale(0.1);
+            opacity: 0;
+        }
+    }
+
+    /* apply it */
+    .trail {
+        animation: trail var(--life) linear forwards;
+    }
+  </style>
+</head>
+<body class="bg-blue-100 font-serif p-1 h-screen">
+    <!-- Mouse Effect -->
+    <div id="cursor"></div>
+
+    <!-- Notifications -->
+    <div id="notification" class="hidden">
+        <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
+        <div class="absolute inset-0 m-2 z-20">
+            <div class="grid place-items-center w-full max-w-2xl h-full m-auto">
+                <div class="relative flex flex-col bg-gray-50 w-full h-full max-h-9/12 overflow-y-hidden">
+                    <button id="btnCloseNotice" class="absolute right-2.5 top-2.5"><i class="grid place-items-center fi fi-rr-cross text-xl text-blue-400"></i></button>
+                    <div class="shadow-[0_5px_5px_-2px_rgba(0,0,0,0.25)]">
+                        <h3 class="text-2xl text-blue-400 font-bold text-center py-4">Notifications</h3>
+                        <div class="grid grid-cols-2 text-center">
+                            <h3 id="noticeAll" class="text-2xl border-b-2 border-blue-400 font-bold text-blue-400 p-3">All</h3>
+                            <h3 id="noticeMention" class="text-2xl p-3">Mention</h3>
+                        </div>
+                    </div>
+
+                    <!-- Notification card -->
+                    <div id="all" class="overflow-y-auto px-4 md:px-8" style="scrollbar-width: none">
+
+                        <!-- Notification All -->
+                        <div class="flex flex-col items-start py-4 border-b-2 border-gray-300">
+                            <div class="flex justify-between w-full">
+                                <div class="flex gap-2 items-center">
+                                    <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-10 aspect-square rounded-full object-cover">
+                                    <h3><span class="text-lg font-bold">Son Richard</span><span class="text-lg text-gray-400"> @sonrichard • 2h</span></h3>
+                                </div>
+                                <i class="grid place-items-center text-xl fi fi-rr-menu-dots"></i>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <i class="grid place-items-center fi fi-sr-heart text-xl text-red-400 w-10 aspect-square"></i>
+                                <p class="text-xl">liked your post</p>
+                            </div>
+                            <p class="ml-12 border-l-4 border-gray-400 text-xl text-gray-400 pl-2">Nice to meet you guys</p>
+                        </div>
+    
+                        <div class="flex flex-col items-start py-4 border-b-2 border-gray-300">
+                            <div class="flex justify-between w-full">
+                                <div class="flex gap-2 items-center">
+                                    <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-10 aspect-square rounded-full object-cover">
+                                    <h3><span class="text-lg font-bold">Son Richard</span><span class="text-lg text-gray-400"> @sonrichard • 10h</span></h3>
+                                </div>
+                                <i class="grid place-items-center text-xl fi fi-rr-menu-dots"></i>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <i class="grid place-items-center fi fi-rr-arrows-retweet text-xl text-green-400 w-10 aspect-square"></i>
+                                <p class="text-xl">shared your post</p>
+                            </div>
+                            <p class="ml-12 border-l-4 border-gray-400 text-xl text-gray-400 pl-2">This is funny!</p>
+                        </div>
+                        
+                        <div class="flex flex-col items-start py-4 border-b-2 border-gray-300">
+                            <div class="flex justify-between w-full">
+                                <div class="flex gap-2 items-center">
+                                    <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-10 aspect-square rounded-full object-cover">
+                                    <h3><span class="text-lg font-bold">Son Richard</span><span class="text-lg text-gray-400"> @sonrichard • 1d</span></h3>
+                                </div>
+                                <i class="grid place-items-center text-xl fi fi-rr-menu-dots"></i>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <i class="grid place-items-center fi fi-rr-user text-xl text-blue-400 w-10 aspect-square"></i>
+                                <p class="text-xl">followed you</p>
+                            </div>
+                        </div>
+    
+                        <div class="flex flex-col items-start py-4 border-b-2 border-gray-300">
+                            <div class="flex justify-between w-full">
+                                <div class="flex gap-2 items-center">
+                                    <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-10 aspect-square rounded-full object-cover">
+                                    <h3><span class="text-lg font-bold">Son Richard</span><span class="text-lg text-gray-400"> @sonrichard • 2d</span></h3>
+                                </div>
+                                <i class="grid place-items-center text-xl fi fi-rr-menu-dots"></i>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <i class="grid place-items-center fi fi-rr-beacon text-xl text-blue-400 w-10 aspect-square"></i>
+                                <p class="text-xl">replied to your post</p>
+                            </div>
+                            <p class="ml-12 border-l-4 border-gray-400 text-xl text-gray-400 pl-2">Thanks for sharing useful information!!</p>
+                            <p class="mt-2 ml-12 border border-gray-400 rounded-xl text-lg text-gray-400 bg-blue-100 px-3 py-2">No problem, glad it helped!</p>
+                        </div>
+    
+                        <div class="flex flex-col items-start py-4 border-b-2 border-gray-300">
+                            <div class="flex justify-between w-full">
+                                <div class="flex gap-2 items-center">
+                                    <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-10 aspect-square rounded-full object-cover">
+                                    <h3><span class="text-lg font-bold">Son Richard</span><span class="text-lg text-gray-400"> @sonrichard • 2d</span></h3>
+                                </div>
+                                <i class="grid place-items-center text-xl fi fi-rr-menu-dots"></i>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <i class="grid place-items-center fi fi-rr-envelope text-xl text-violet-400 w-10 aspect-square"></i>
+                                <p class="text-xl">mentioned you in a post</p>
+                            </div>
+                            <p class="ml-12 border-l-4 border-gray-400 text-xl text-gray-400 pl-2">Can you elaborate on this topic?</p>
+                        </div>
+                        
+                        <div class="flex flex-col items-start py-4 border-b-2 border-gray-300">
+                            <div class="flex justify-between w-full">
+                                <div class="flex gap-2 items-center">
+                                    <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-10 aspect-square rounded-full object-cover">
+                                    <h3><span class="text-lg font-bold">Son Richard</span><span class="text-lg text-gray-400"> @sonrichard • 2d</span></h3>
+                                </div>
+                                <i class="grid place-items-center text-xl fi fi-rr-menu-dots"></i>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <i class="grid place-items-center fi fi-rr-beacon text-xl text-blue-400 w-10 aspect-square"></i>
+                                <p class="text-xl">replied to your post</p>
+                            </div>
+                            <p class="ml-12 border-l-4 border-gray-400 text-xl text-gray-400 pl-2">Can you elaborate on this topic?</p>
+                        </div>
+
+                        <div class="flex flex-col items-start py-4 border-b-2 border-gray-300">
+                            <div class="flex justify-between w-full">
+                                <div class="flex gap-2 items-center">
+                                    <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-10 aspect-square rounded-full object-cover">
+                                    <h3><span class="text-lg font-bold">Son Richard</span><span class="text-lg text-gray-400"> @sonrichard • 2h</span></h3>
+                                </div>
+                                <i class="grid place-items-center text-xl fi fi-rr-menu-dots"></i>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <i class="grid place-items-center fi fi-sr-heart text-xl text-red-400 w-10 aspect-square"></i>
+                                <p class="text-xl">liked your post</p>
+                            </div>
+                            <p class="ml-12 border-l-4 border-gray-400 text-xl text-gray-400 pl-2">Nice to meet you guys</p>
+                        </div>
+                    </div>
+
+                    <!-- Notification Mention -->
+                    <div id="mention" class="hidden overflow-y-auto px-4 md:px-8" style="scrollbar-width: none">
+                        <div class="flex flex-col items-start py-4 border-b-2 border-gray-300">
+                            <div class="flex justify-between w-full">
+                                <div class="flex gap-2 items-center">
+                                    <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-10 aspect-square rounded-full object-cover">
+                                    <h3><span class="text-lg font-bold">Son Richard</span><span class="text-lg text-gray-400"> @sonrichard • 2d</span></h3>
+                                </div>
+                                <i class="grid place-items-center text-xl fi fi-rr-menu-dots"></i>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <i class="grid place-items-center fi fi-rr-envelope text-xl text-violet-400 w-10 aspect-square"></i>
+                                <p class="text-xl">mentioned you in a post</p>
+                            </div>
+                            <p class="ml-12 border-l-4 border-gray-400 text-xl text-gray-400 pl-2">Can you elaborate on this topic?</p>
+                        </div>
+
+                        <div class="flex flex-col items-start py-4 border-b-2 border-gray-300">
+                            <div class="flex justify-between w-full">
+                                <div class="flex gap-2 items-center">
+                                    <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-10 aspect-square rounded-full object-cover">
+                                    <h3><span class="text-lg font-bold">Son Richard</span><span class="text-lg text-gray-400"> @sonrichard • 2d</span></h3>
+                                </div>
+                                <i class="grid place-items-center text-xl fi fi-rr-menu-dots"></i>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <i class="grid place-items-center fi fi-rr-envelope text-xl text-violet-400 w-10 aspect-square"></i>
+                                <p class="text-xl">mentioned you in a post</p>
+                            </div>
+                            <p class="ml-12 border-l-4 border-gray-400 text-xl text-gray-400 pl-2">Can you elaborate on this topic?</p>
+                        </div>
+
+                        <div class="flex flex-col items-start py-4 border-b-2 border-gray-300">
+                            <div class="flex justify-between w-full">
+                                <div class="flex gap-2 items-center">
+                                    <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-10 aspect-square rounded-full object-cover">
+                                    <h3><span class="text-lg font-bold">Son Richard</span><span class="text-lg text-gray-400"> @sonrichard • 2d</span></h3>
+                                </div>
+                                <i class="grid place-items-center text-xl fi fi-rr-menu-dots"></i>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <i class="grid place-items-center fi fi-rr-envelope text-xl text-violet-400 w-10 aspect-square"></i>
+                                <p class="text-xl">mentioned you in a post</p>
+                            </div>
+                            <p class="ml-12 border-l-4 border-gray-400 text-xl text-gray-400 pl-2">Can you elaborate on this topic?</p>
+                        </div>
+
+                        <div class="flex flex-col items-start py-4 border-b-2 border-gray-300">
+                            <div class="flex justify-between w-full">
+                                <div class="flex gap-2 items-center">
+                                    <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-10 aspect-square rounded-full object-cover">
+                                    <h3><span class="text-lg font-bold">Son Richard</span><span class="text-lg text-gray-400"> @sonrichard • 2d</span></h3>
+                                </div>
+                                <i class="grid place-items-center text-xl fi fi-rr-menu-dots"></i>
+                            </div>
+                            <div class="flex gap-2 items-center">
+                                <i class="grid place-items-center fi fi-rr-envelope text-xl text-violet-400 w-10 aspect-square"></i>
+                                <p class="text-xl">mentioned you in a post</p>
+                            </div>
+                            <p class="ml-12 border-l-4 border-gray-400 text-xl text-gray-400 pl-2">Can you elaborate on this topic?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme -->
+    <div id="theme" class="hidden">
+        <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
+        <div class="absolute inset-0 m-2 z-20">
+            <div class="grid place-items-center w-full max-w-xl h-full m-auto">
+                <div class="relative flex flex-col gap-4 items-center w-full p-4 md:p-8 rounded-2xl bg-gray-50">
+                    <h3 class="text-2xl text-blue-400 font-bold text-center">Customize your view</h3>
+                    <button id="btnCloseTheme" class="absolute right-2.5 top-2.5"><i class="grid place-items-center fi fi-rr-cross text-xl text-blue-400"></i></button>
+                    <p class="text-gray-400 text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum minima architecto doloremque aut recusandae fugiat magni distinctio! Commodi quibusdam non maxime iure. Mollitia tempora nisi natus consequuntur error deserunt animi.</p>
+                    <div href="#" class="flex gap-2.5 border border-gray-400 rounded-2xl p-2">
+                        <button class="bg-blue-400 rounded-full h-10 aspect-square">
+                            <i class="grid place-items-center fi fi-brands-twitter text-2xl text-white"></i>
+                        </button>
+                        <div class="text-lg">
+                            <span class="flex gap-2"><h3 class="font-bold">Twitter</h3><p class="text-gray-400">@twitter • 1h</p></span>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit unde, modi dolore inventore ipsa sint, amet fugiat, ipsam ab corrupti velit.
+                                <a href="#" class="text-blue-400">#hashtag</a>
+                            </p>
+                        </div>
+                    </div>
+                    <h3 class="text-lg text-blue-400 font-bold">Color</h3>
+                    <div class="flex justify-around bg-blue-100 w-full py-4 rounded-2xl">
+                        <button class="bg-blue-400 h-10 aspect-square rounded-full"></button>
+                        <button class="bg-orange-400 h-10 aspect-square rounded-full"></button>
+                        <button class="bg-red-400 h-10 aspect-square rounded-full"></button>
+                        <button class="bg-green-400 h-10 aspect-square rounded-full"></button>
+                        <button class="bg-pink-400 h-10 aspect-square rounded-full"></button>
+                    </div>
+                    <h3 class="text-lg text-blue-400 font-bold">Background</h3>
+                    <div class="grid grid-cols-3 gap-2 bg-blue-100 w-full rounded-2xl p-4">
+                        <button class="flex items-center justify-center gap-2 border-2 border-blue-400 bg-white p-2">
+                            <i class="grid place-items-center fi fi-rr-check-circle"></i>Light
+                        </button>
+                        <button class="flex items-center justify-center gap-2 border-2 border-blue-400 bg-gray-400 text-black p-2">
+                            <i class="grid place-items-center fi fi-rr-circle"></i>Gray
+                        </button>
+                        <button class="flex items-center justify-center gap-2 border-2 border-blue-400 bg-black text-white p-2">
+                            <i class="grid place-items-center fi fi-rr-circle"></i>Dark
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-rows-[auto_auto] w-full max-w-[1200px] m-auto h-full">
+        <header>
+            <nav class="grid grid-cols-[70px_auto] md:grid-cols-[70px_auto_300px] lg:grid-cols-[250px_auto_300px] items-center">
+                <a href="#" class="flex text-blue-400 font-bold max-lg:mx-auto">
+                    <i class="grid place-items-center fi fi-brands-twitter text-4xl mx-3"></i>
+                    <h3 class="text-effect hidden lg:inline text-2xl">Twitter</h3>
+                </a>
+                <div class="flex justify-between items-center border border-gray-300 px-4 py-2.5 h-full">
+                    <h3 class="text-xl font-bold">Home</h3>
+                    <i class="fi fi-rr-sparkles flex items-center text-blue-400 text-2xl"></i>
+                </div>
+                <form action="#" class="hidden md:flex bg-gray-300 gap-3 px-3.5 py-2 rounded-4xl mx-3">
+                    <button><i class="fi fi-rr-search text-xl"></i></button>
+                    <input type="text" placeholder="Search" class="w-full outline-none text-xl">
+                </form>
+            </nav>
+        </header>
+        <main class="overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-[70px_auto_300px] lg:grid-cols-[250px_auto_300px] h-full">
+                <!-- Menu Mobile -->
+                <nav class="hidden max-md:block overflow-x-auto" style="scrollbar-width: none">
+                    <ul class="navList flex flex-nowrap ">
+                        <li class="flex-none grid place-items-center w-1/4 h-14 text-blue-400"><i class="fi fi-sr-home text-2xl"></i></li>
+                        <li class="flex-none grid place-items-center w-1/4 h-14"><i class="fi fi-rr-hastag text-2xl"></i></li>
+                        <li class="btnNotice flex-none grid place-items-center w-1/4 h-14"><i class="fi fi-rr-bell text-2xl"></i></li>
+                        <li class="flex-none grid place-items-center w-1/4 h-14"><i class="fi fi-rr-envelope text-2xl"></i></li>
+                        <li class="flex-none grid place-items-center w-1/4 h-14"><i class="fi fi-rr-bookmark text-2xl"></i></li>
+                        <li class="flex-none grid place-items-center w-1/4 h-14"><i class="fi fi-rr-document text-2xl"></i></li>
+                        <li class="flex-none grid place-items-center w-1/4 h-14"><i class="fi fi-rr-user text-2xl"></i></li>
+                        <li class="btnTheme flex-none grid place-items-center w-1/4 h-14"><i class="fi fi-rr-background text-2xl"></i></li>
+                        <li class="flex-none grid place-items-center w-1/4 h-14"><i class="fi fi-rr-circle-ellipsis text-2xl"></i></li>
+                    </ul>
+                </nav>
+
+                <!-- Menu Left-->
+                <div class="hidden md:flex flex-col max-lg:items-center mx-2.5">
+                    <ul class="navList flex flex-col gap-5 p-3 font-bold">
+                        <li class="flex gap-4 text-xl text-blue-400"><i class="fi fi-sr-home text-2xl"></i><h3 class="hidden lg:inline">Home</h3></li>
+                        <li class="flex gap-4 text-xl"><i class="fi fi-rr-hastag text-2xl"></i><h3 class="hidden lg:inline">Explore</h3></li>
+                        <li class="btnNotice flex gap-4 text-xl"><i class="fi fi-rr-bell text-2xl"></i><h3 class="hidden lg:inline">Notifications</h3></li>
+                        <li class="flex gap-4 text-xl"><i class="fi fi-rr-envelope text-2xl"></i><h3 class="hidden lg:inline">Messenges</h3></li>
+                        <li class="flex gap-4 text-xl"><i class="fi fi-rr-bookmark text-2xl"></i><h3 class="hidden lg:inline">Bookmarks</h3></li>
+                        <li class="flex gap-4 text-xl"><i class="fi fi-rr-document text-2xl"></i><h3 class="hidden lg:inline">Lists</h3></li>
+                        <li class="flex gap-4 text-xl"><i class="fi fi-rr-user text-2xl"></i><h3 class="hidden lg:inline">Profile</h3></li>
+                        <li class="btnTheme flex gap-4 text-xl"><i class="fi fi-rr-background text-2xl"></i><h3 class="hidden lg:inline">Theme</h3></li>
+                        <li class="flex gap-4 text-xl"><i class="fi fi-rr-circle-ellipsis text-2xl"></i><h3 class="hidden lg:inline">More</h3></li>
+                    </ul>
+                    <button class="hidden lg:block bg-blue-400 px-5 py-2 text-xl rounded-4xl text-white w-full">Tweet</button>
+                    <button class="hidden max-lg:block bg-blue-400 text-xl rounded-full text-white w-10 aspect-square"><i class="fi fi-rr-attribution-pencil"></i></button>
+                </div>
+
+                <!-- Post -->
+                <div class="overflow-y-auto" style="scrollbar-width: none">
+
+                    <!-- Status Post -->
+                    <div class="flex gap-2 border border-gray-300 px-4 py-2.5">
+                        <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="h-10 aspect-square rounded-full object-cover">
+                        <div class="flex flex-col gap-2 w-full">
+                            <input type="text" placeholder="What's happening" class="w-full h-10 outline-none text-xl">
+                            <div class="flex justify-between items-center">
+                                <div class="flex gap-4 text-2xl text-blue-400">
+                                    <i class="grid place-items-center fi fi-rr-add-image"></i>
+                                    <i class="grid place-items-center fi fi-rr-gif-square"></i>
+                                    <i class="grid place-items-center fi fi-rs-smile-beam"></i>
+                                    <i class="grid place-items-center fi fi-rr-calendar-clock"></i>
+                                </div>
+                                <button class="bg-blue-400 rounded-4xl px-4 py-2 text-white">Tweet</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Post -->
+                    <div class="flex gap-2 border border-gray-300 px-4 py-2.5">
+                        <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="h-10 aspect-square rounded-full object-cover">
+                        <div class="flex flex-col gap-1 w-full">
+                            <div class="flex items-center gap-1.5">
+                                <h3 class="font-bold text-xl">Ver User</h3>
+                                <i class="fi fi-sr-shield-trust flex items-center text-blue-400 text-xl"></i>
+                                <p class="text-gray-400">@VUser • 17m</p>
+                                <a href="#" class="text-xl ml-auto"><i class="fi fi-rr-menu-dots flex items-center"></i></a>
+                            </div>
+                            <p class="text-xl">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus nisi impedit dolorum. Laudantium maxime, quia cum nobis commodi assumenda inventore voluptatum odit repellendus repellat amet nam vero velit? Incidunt, vel.</p>
+                            <div class="flex justify-between mt-2">
+                                <p class="flex gap-2"><i class="fi fi-rr-beacon text-xl"></i>3</p>
+                                <p class="flex gap-2"><i class="fi fi-rr-arrows-retweet text-xl"></i> 3</p>
+                                <p class="flex gap-2"><i class="fi fi-rr-heart text-xl"></i> 2</p>
+                                <p class="flex gap-2"><i class="fi fi-rr-share-square text-xl"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 border border-gray-300 px-4 py-2.5">
+                        <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="h-10 aspect-square rounded-full object-cover">
+                        <div class="flex flex-col gap-1 w-full">
+                            <div class="flex items-center gap-1.5">
+                                <h3 class="font-bold text-xl">Ver User</h3>
+                                <i class="fi fi-sr-shield-trust flex items-center text-blue-400 text-xl"></i>
+                                <p class="text-gray-400">@VUser • 17m</p>
+                                <a href="#" class="text-xl ml-auto"><i class="fi fi-rr-menu-dots flex items-center"></i></a>
+                            </div>
+                            <p class="text-xl">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-auto rounded-2xl">
+                            <div class="flex justify-between mt-2">
+                                <p class="flex gap-2"><i class="fi fi-rr-beacon text-xl"></i>3</p>
+                                <p class="flex gap-2"><i class="fi fi-rr-arrows-retweet text-xl"></i> 3</p>
+                                <p class="flex gap-2"><i class="fi fi-rr-heart text-xl"></i> 2</p>
+                                <p class="flex gap-2"><i class="fi fi-rr-share-square text-xl"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 border border-gray-300 px-4 py-2.5">
+                        <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="h-10 aspect-square rounded-full object-cover">
+                        <div class="flex flex-col gap-1 w-full">
+                            <div class="flex items-center gap-1.5">
+                                <h3 class="font-bold text-xl">Ver User</h3>
+                                <i class="fi fi-sr-shield-trust flex items-center text-blue-400 text-xl"></i>
+                                <p class="text-gray-400">@VUser • 17m</p>
+                                <a href="#" class="text-xl ml-auto"><i class="fi fi-rr-menu-dots flex items-center"></i></a>
+                            </div>
+                            <p class="text-xl">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="w-auto rounded-2xl">
+                            <div class="flex justify-between mt-2">
+                                <p class="flex gap-2"><i class="fi fi-rr-beacon text-xl"></i>3</p>
+                                <p class="flex gap-2"><i class="fi fi-rr-arrows-retweet text-xl"></i> 3</p>
+                                <p class="flex gap-2"><i class="fi fi-rr-heart text-xl"></i> 2</p>
+                                <p class="flex gap-2"><i class="fi fi-rr-share-square text-xl"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News -->
+                <div class="hidden md:block overflow-y-auto" style="scrollbar-width: none">
+                    <div class="mx-3 my-3 bg-blue-50 rounded-2xl">
+                        <div class="flex justify-between items-center mb-4 px-3.5 pt-2">
+                            <h3 class="font-bold text-xl">What's happening</h3>
+                            <img src="./svg/Setting.svg" alt="" class="h-5 text-blue-400">
+                        </div>
+                        <div class="flex justify-between items-center gap-2 px-3.5 py-2 border-t border-gray-300">
+                            <div>
+                                <p>Formula 1 • LIVE</p>
+                                <h3 class="font-bold">British Grand Prix 2021</h3>
+                                <p>Trending with <a href="#" class="underline text-blue-400">British Grand Prix</a></p>
+                            </div>
+                            <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="h-16 aspect-square rounded-2xl object-cover">
+                        </div>
+                        <div class="flex justify-between items-center gap-2 px-3.5 py-2 border-t border-gray-300">
+                            <div>
+                                <p>Formula 1 • LIVE</p>
+                                <h3 class="font-bold">British Grand Prix 2021</h3>
+                                <p>Trending with <a href="#" class="underline text-blue-400">British Grand Prix</a></p>
+                            </div>
+                            <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="h-16 aspect-square rounded-2xl object-cover">
+                        </div>
+                        <div class="flex justify-between items-center gap-2 px-3.5 py-2 border-t border-gray-300">
+                            <div>
+                                <p>Formula 1 • LIVE</p>
+                                <h3 class="font-bold">British Grand Prix 2021</h3>
+                                <p>Trending with <a href="#" class="underline text-blue-400">British Grand Prix</a></p>
+                            </div>
+                            <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="h-16 aspect-square rounded-2xl object-cover">
+                        </div>
+                        <div class="border-t border-gray-300 px-3.5 py-2">
+                            <a href="#" class="text-blue-400 text-[18px]">Show more</a>
+                        </div>
+                    </div>
+
+                    <!-- Trending -->
+                    <div class="mx-3 my-3 bg-blue-50 rounded-2xl">
+                        <div class="flex justify-between items-center mb-4 px-3.5 pt-2">
+                            <h3 class="font-bold text-xl">Trends for you</h3>
+                            <img src="./svg/Setting.svg" alt="" class="h-5 text-blue-400">
+                        </div>
+                        <div class="flex justify-between px-3.5 py-2 border-t border-gray-300">
+                            <div>
+                                <p>Politics • Trending</p>
+                                <h3 class="font-bold">#Loremipsumdolorsit</h3>
+                                <p>82 Tweets</p>
+                            </div>
+                            <a href="#" class="text-xl"><i class="fi fi-rr-menu-dots"></i></a>
+                        </div>
+                        <div class="flex justify-between px-3.5 py-2 border-t border-gray-300">
+                            <div>
+                                <p>Politics • Trending</p>
+                                <h3 class="font-bold">#Loremipsumdolorsit</h3>
+                                <p>82 Tweets</p>
+                            </div>
+                            <a href="#" class="text-xl"><i class="fi fi-rr-menu-dots"></i></a>
+                        </div>
+                        <div class="flex justify-between px-3.5 py-2 border-t border-gray-300">
+                            <div>
+                                <p>Politics • Trending</p>
+                                <h3 class="font-bold">#Loremipsumdolorsit</h3>
+                                <p>82 Tweets</p>
+                            </div>
+                            <a href="#" class="text-xl"><i class="fi fi-rr-menu-dots"></i></a>
+                        </div>
+                        <div class="flex justify-between px-3.5 py-2 border-t border-gray-300">
+                            <div>
+                                <p>Politics • Trending</p>
+                                <h3 class="font-bold">#Loremipsumdolorsit</h3>
+                                <p>82 Tweets</p>
+                            </div>
+                            <a href="#" class="text-xl"><i class="fi fi-rr-menu-dots"></i></a>
+                        </div>
+                        <div class="flex justify-between px-3.5 py-2 border-t border-gray-300">
+                            <div>
+                                <p>Politics • Trending</p>
+                                <h3 class="font-bold">#Loremipsumdolorsit</h3>
+                                <p>82 Tweets</p>
+                            </div>
+                            <a href="#" class="text-xl"><i class="fi fi-rr-menu-dots"></i></a>
+                        </div>
+                        <div class="border-t border-gray-300 px-3.5 py-2">
+                            <a href="#" class="text-blue-400 text-[18px]">Show more</a>
+                        </div>
+                    </div>
+
+                    <!-- Friend list -->
+                    <div class="mx-3 my-3 bg-blue-50 rounded-2xl">
+                        <div class="flex justify-between items-center mb-4 px-3.5 pt-2">
+                            <h3 class="font-bold text-xl">Who follow you</h3>
+                            <img src="./svg/Setting.svg" alt="" class="h-5 text-blue-400">
+                        </div>
+                        <div class="flex gap-2 items-center px-3.5 py-2 border-t border-gray-300">
+                            <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="h-10 aspect-square rounded-full object-cover">
+                            <div class="w-full">
+                                <h3 class="font-bold text-lg line-clamp-1">Bella</h3>
+                                <p class="text-blue-300">@SSN</p>
+                            </div>
+                            <button class="text-[18px] text-blue-400 px-4 py-1 border border-blue-400 rounded-4xl font-bold ml-auto">Follow</button>
+                        </div>
+                        <div class="flex gap-2 items-center px-3.5 py-2 border-t border-gray-300">
+                            <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="h-10 aspect-square rounded-full object-cover">
+                            <div class="w-full">
+                                <h3 class="font-bold text-lg line-clamp-1">Mikey</h3>
+                                <p class="text-blue-300">@MIK</p>
+                            </div>
+                            <button class="text-[18px] text-blue-400 px-4 py-1 border border-blue-400 rounded-4xl font-bold ml-auto">Follow</button>
+                        </div>
+                        <div class="flex gap-2 items-center px-3.5 py-2 border-t border-gray-300">
+                            <img src="https://cache.desktopnexus.com/thumbseg/128/128993-bigthumbnail.jpg" alt="" class="h-10 aspect-square rounded-full object-cover">
+                            <div class="w-full">
+                                <h3 class="font-bold text-lg line-clamp-1">Bella Richard</h3>
+                                <p class="text-blue-300">@BRS</p>
+                            </div>
+                            <button class="text-[18px] text-blue-400 px-4 py-1 border border-blue-400 rounded-4xl font-bold ml-auto">Follow</button>
+                        </div>
+                        <div class="border-t border-gray-300 px-3.5 py-2">
+                            <a href="#" class="text-blue-400 text-[18px]">Show more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

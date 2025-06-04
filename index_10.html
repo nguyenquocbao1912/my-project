@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style_10.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="nav-bar">
+                <div class="nav-section nav-left">
+                    <button class="nav-btn menu-list"><i class="bi bi-list"></i></button>
+                    <a href="#" class="nav-logo">
+                        <img src="./images/marketplace.png" alt="">
+                        <h3 class="logo-text">YtbClone</h3>
+                    </a>
+                </div>
+                <div class="nav-center">
+                    <form action="#">
+                        <input type="text" placeholder="Search" class="search-form">
+                        <button class="search-btn"><i class="bi bi-search"></i></button>
+                    </form>
+                    <button class="mic-btn"><i class="bi bi-mic"></i></button>
+                </div>
+                <div class="nav-section nav-right">
+                    <button class="icon-btn search"><i class="bi bi-search"></i></button>
+                    <button class="icon-btn" id="theme-toggle"><i id="theme-icon" class="bi"></i></button>
+                    <img src="./images/house3.jpg" alt="" class="user">
+                </div>
+            </nav>
+            <nav class="nav-bar d-none" id="nav-bar-mobile">
+                <div class="nav-center-mobile">
+                    <button class="icon-btn" id="btn-back"><i class="bi bi-arrow-left"></i></button>
+                    <form action="#">
+                        <input type="text" placeholder="Search" class="search-form">
+                        <button class="search-btn"><i class="bi bi-search"></i></button>
+                    </form>
+                    <button class="mic-btn"><i class="bi bi-mic"></i></button>
+                </div>
+            </nav>
+        </header>
+        <main class="main-layout">
+            <div class="screen-overlay"></div>
+            <div class="slider-bar">
+                <div class="nav-section nav-left-mobile">
+                    <button class="nav-btn menu-list"><i class="bi bi-list"></i></button>
+                    <a href="#" class="nav-logo">
+                        <img src="./images/marketplace.png" alt="">
+                        <h3 class="logo-text">YtbClone</h3>
+                    </a>
+                </div>
+                <div class="links-container">
+                    <div class="link-section">
+                        <a href="#" class="link-item"><i class="bi bi-house"></i>Home</a>
+                        <a href="#" class="link-item"><i class="bi bi-camera-video"></i>Shorts</a>
+                        <a href="#" class="link-item"><i class="bi bi-tv"></i>Subscriptions</a>
+                    </div>
+                    <hr class="section-separator">
+                    <div class="link-section">
+                        <h3 class="section-title">You</h3>
+                        <a href="#" class="link-item"><i class="bi bi-house"></i>Your channel</a>
+                        <a href="#" class="link-item"><i class="bi bi-camera-video"></i>History</a>
+                        <a href="#" class="link-item"><i class="bi bi-tv"></i>Watch later</a>
+                    </div>
+                    <hr class="section-separator">
+                    <div class="link-section">
+                        <h3 class="section-title">Explore</h3>
+                        <a href="#" class="link-item"><i class="bi bi-house"></i>Trending</a>
+                        <a href="#" class="link-item"><i class="bi bi-camera-video"></i>Music</a>
+                        <a href="#" class="link-item"><i class="bi bi-tv"></i>Gaming</a>
+                        <a href="#" class="link-item"><i class="bi bi-trophy"></i>Sports</a>
+                    </div>
+                    <hr class="section-separator">
+                    <div class="link-section">
+                        <h3 class="section-title">More form Youtube</h3>
+                        <a href="#" class="link-item"><i class="bi bi-house"></i>Youtube Plus</a>
+                        <a href="#" class="link-item"><i class="bi bi-camera-video"></i>Youtube Music</a>
+                        <a href="#" class="link-item"><i class="bi bi-trophy"></i>Youtube Kids</a>
+                    </div>
+                    <hr class="section-separator">
+                    <div class="link-section">
+                        <a href="#" class="link-item"><i class="bi bi-house"></i>Settings</a>
+                        <a href="#" class="link-item"><i class="bi bi-camera-video"></i>Report</a>
+                        <a href="#" class="link-item"><i class="bi bi-info-circle"></i>Help</a>
+                        <a href="#" class="link-item"><i class="bi bi-trophy"></i>Feedback</a>
+                    </div>
+                </div>
+            </div>
+            <div class="content-wrapper">
+                <div class="category-list">
+                    <button class="btn-category">All</button>
+                    <button class="btn-category">Music</button>
+                    <button class="btn-category">Game</button>
+                    <button class="btn-category">All</button>
+                    <button class="btn-category">Music</button>
+                    <button class="btn-category">Game</button>
+                    <button class="btn-category">All</button>
+                    <button class="btn-category">Music</button>
+                    <button class="btn-category">Game</button>
+                    <button class="btn-category">All</button>
+                    <button class="btn-category">Music</button>
+                    <button class="btn-category">Game</button>
+                    <button class="btn-category">All</button>
+                    <button class="btn-category">Music</button>
+                    <button class="btn-category">Game</button>
+                    <button class="btn-category">All</button>
+                    <button class="btn-category">Music</button>
+                    <button class="btn-category">Game</button>
+                </div>
+                <div class="video-list">
+                    <a href="#" class="video-card">
+                        <img src="./images/house3.jpg" alt="" class="video-thumnail">
+                        <div class="video-info">
+                            <div class="channel-icon">
+                                <img src="./images/map.jpg" alt="">
+                            </div>
+                            <div class="video-details">
+                                <h3 class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas non corporis ratione dolore assumenda cumque nesciunt velit incidunt id iusto cum quaerat vel modi.</h3>
+                                <p class="channel-name">NoCopyRightSound</p>
+                                <p class="view">217K Views ~ 5 months ago</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="video-card">
+                        <img src="./images/house2.jpg" alt="" class="video-thumnail">
+                        <div class="video-info">
+                            <div class="channel-icon">
+                                <img src="./images/map.jpg" alt="">
+                            </div>
+                            <div class="video-details">
+                                <h3 class="title">Dolorem ratione a quam incidunt necessitatibus? Harum, rerum. Vero facilis labore nemo iusto ipsum tenetur, distinctio, ut voluptates consectetur vitae repellat placeat?</h3>
+                                <p class="channel-name">NoCopyRightSound</p>
+                                <p class="view">217K Views ~ 5 months ago</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="video-card">
+                        <img src="./images/map.jpg" alt="" class="video-thumnail">
+                        <div class="video-info">
+                            <div class="channel-icon">
+                                <img src="./images/map.jpg" alt="">
+                            </div>
+                            <div class="video-details">
+                                <h3 class="title">Dolorem ratione a quam incidunt necessitatibus? Harum, rerum. Vero facilis labore nemo iusto ipsum tenetur, distinctio, ut voluptates consectetur vitae repellat placeat?</h3>
+                                <p class="channel-name">NoCopyRightSound</p>
+                                <p class="view">217K Views ~ 5 months ago</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="video-card">
+                        <img src="./images/group.jpg" alt="" class="video-thumnail">
+                        <div class="video-info">
+                            <div class="channel-icon">
+                                <img src="./images/map.jpg" alt="">
+                            </div>
+                            <div class="video-details">
+                                <h3 class="title">Dolorem ratione a quam incidunt necessitatibus? Harum, rerum. Vero facilis labore nemo iusto ipsum tenetur, distinctio, ut voluptates consectetur vitae repellat placeat?</h3>
+                                <p class="channel-name">NoCopyRightSound</p>
+                                <p class="view">217K Views ~ 5 months ago</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="video-card">
+                        <img src="./images/house3.jpg" alt="" class="video-thumnail">
+                        <div class="video-info">
+                            <div class="channel-icon">
+                                <img src="./images/group.jpg" alt="">
+                            </div>
+                            <div class="video-details">
+                                <h3 class="title">Dolorem ratione a quam incidunt necessitatibus? Harum, rerum. Vero facilis labore nemo iusto ipsum tenetur, distinctio, ut voluptates consectetur vitae repellat placeat?</h3>
+                                <p class="channel-name">NoCopyRightSound</p>
+                                <p class="view">217K Views ~ 5 months ago</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="video-card">
+                        <img src="./images/group.jpg" alt="" class="video-thumnail">
+                        <div class="video-info">
+                            <div class="channel-icon">
+                                <img src="./images/map.jpg" alt="">
+                            </div>
+                            <div class="video-details">
+                                <h3 class="title">Dolorem ratione a quam incidunt necessitatibus? Harum, rerum. Vero facilis labore nemo iusto ipsum tenetur, distinctio, ut voluptates consectetur vitae repellat placeat?</h3>
+                                <p class="channel-name">NoCopyRightSound</p>
+                                <p class="view">217K Views ~ 5 months ago</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="video-card">
+                        <img src="./images/house3.jpg" alt="" class="video-thumnail">
+                        <div class="video-info">
+                            <div class="channel-icon">
+                                <img src="./images/group.jpg" alt="">
+                            </div>
+                            <div class="video-details">
+                                <h3 class="title">Dolorem ratione a quam incidunt necessitatibus? Harum, rerum. Vero facilis labore nemo iusto ipsum tenetur, distinctio, ut voluptates consectetur vitae repellat placeat?</h3>
+                                <p class="channel-name">NoCopyRightSound</p>
+                                <p class="view">217K Views ~ 5 months ago</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="./script_6.js"></script>
+</body>
+</html>
